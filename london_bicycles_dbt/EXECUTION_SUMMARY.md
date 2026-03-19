@@ -1,14 +1,14 @@
 # London Bicycles dbt Project - Execution Summary
 
-## ✅ Project Setup Complete
+## Project Setup Complete
 
 A fully functional dbt project has been created for analyzing London Bicycles rental data using Google BigQuery.
 
 ## Verified Commands
 
-### 1. ✅ dbt debug
+### 1. dbt debug
 **Status**: PASS  
-**Connection**: OK to pydrive-colab-2 (EU location)  
+**Connection**: OK to EU location
 **Output**: "All checks passed!"
 
 ```bash
@@ -20,18 +20,18 @@ $ dbt debug
 # - All required dependencies are installed
 ```
 
-### 2. ✅ dbt run
+### 2. dbt run
 **Status**: PASS  
 **Models Built**: 5/5 (2 views + 3 tables)
 
 **Staging Models (Views)**:
-- ✅ `london_bicycles_staging.stg_stations` (0 rows processed, 2 seconds)
-- ✅ `london_bicycles_staging.stg_trips` (0 rows processed, 2 seconds)
+- `london_bicycles_staging.stg_stations` (0 rows processed, 2 seconds)
+- `london_bicycles_staging.stg_trips` (0 rows processed, 2 seconds)
 
 **Mart Models (Tables)**:
-- ✅ `london_bicycles_marts.dim_stations` (15 rows, 592 bytes)
-- ✅ `london_bicycles_marts.fct_trips` (20 rows, 2.4 KB)
-- ✅ `london_bicycles_marts.trips_by_hour` (7 rows, 1.2 KB)
+- `london_bicycles_marts.dim_stations` (15 rows, 592 bytes)
+- `london_bicycles_marts.fct_trips` (20 rows, 2.4 KB)
+- `london_bicycles_marts.trips_by_hour` (7 rows, 1.2 KB)
 
 **Output**: "Completed successfully"
 
@@ -41,15 +41,15 @@ $ dbt run
 # All models created in BigQuery
 ```
 
-### 3. ✅ dbt test
+### 3. dbt test
 **Status**: PASS  
 **Tests Run**: 31 tests  
 **Results**: 31 PASS, 0 FAIL
 
 Test categories validated:
-- ✅ Uniqueness tests on primary keys (station_id, trip_id)
-- ✅ Not-null constraints on required columns
-- ✅ Data type validations (numeric checks)
+- Uniqueness tests on primary keys (station_id, trip_id)
+- Not-null constraints on required columns
+- Data type validations (numeric checks)
 
 **Output**: "Completed successfully"
 
@@ -165,8 +165,8 @@ Ready for Analysis & Reporting
 - Type validation for numeric fields
 
 ### Test Coverage
-- ✅ Staging models: 8 tests (all pass)
-- ✅ Mart models: 23 tests (all pass)
+- Staging models: 8 tests (all pass)
+- Mart models: 23 tests (all pass)
 
 ## Ready to Use
 
@@ -201,15 +201,15 @@ $ dbt docs serve  # View at localhost:8000
 ## Customization Ready
 
 The project is ready for:
-- ✅ Adding new models to `models/staging/` or `models/marts/`
-- ✅ Creating incremental models for large datasets
-- ✅ Adding custom macros in `macros/`
-- ✅ Integrating with other data sources
-- ✅ Publishing to dbt Cloud for scheduling
+- Adding new models to `models/staging/` or `models/marts/`
+- Creating incremental models for large datasets
+- Adding custom macros in `macros/`
+- Integrating with other data sources
+- Publishing to dbt Cloud for scheduling
 
 ## Database Schema Structure
 
-**EU Location - pydrive-colab-2 project**
+**EU Location - Project**
 
 Datasets created:
 ```
@@ -223,16 +223,16 @@ london_bicycles_staging (transformation schema)
 └── stg_trips (view)
 
 london_bicycles_marts (business schema)
-├── dim_stations (table - 15 rows)
-├── fct_trips (table - 20 rows)
-└── trips_by_hour (table - 7 rows)
+├── dim_stations (table)
+├── fct_trips (table)
+└── trips_by_hour (table)
 ```
 
-## Verification Complete ✅
+## Verification Complete 
 
 All three required commands execute successfully:
-- ✅ `$ dbt debug` → Connection verified
-- ✅ `$ dbt run` → All models built
-- ✅ `$ dbt test` → All tests pass
+- `$ dbt debug` → Connection verified
+- `$ dbt run` → All models built
+- `$ dbt test` → All tests pass
 
-Your London Bicycles dbt project is ready for data analysis!
+London Bicycles dbt project is ready for data analysis
