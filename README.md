@@ -2,44 +2,44 @@
 
 ## Complete ELT Pipeline Deployed
 
-A production-ready, feature-complete data pipeline combining dbt, Meltano, and Great Expectations is fully operational.
+A production-ready, feature-complete data ELT pipeline combining dbt, Meltano, Great Expectations data quality test and validation is fully operational.
 
 ## Architecture Overview
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │          EXTRACT & LOAD (Meltano)                              │
-│  BigQuery Public Data / CSV Seeds → BigQuery Landing Zone     │
+│  BigQuery Public Data / CSV Seeds → BigQuery Landing Zone      │
 └────────────────────────────────────────────────────────────────┘
                           ↓
 ┌────────────────────────────────────────────────────────────────┐
 │          TRANSFORM (dbt)                                       │
-│  Landing → Staging (Views) → Marts (Tables)                   │
-│  • 2 Staging Models (cleaned data)                            │
-│  • 6 Mart Models (business analytics)                         │
+│  Landing → Staging (Views) → Marts (Tables)                    │
+│  • 2 Staging Models (cleaned data)                             │
+│  • 6 Mart Models (business analytics)                          │
 │  • 30+ Data Quality Tests                                      │
 └────────────────────────────────────────────────────────────────┘
                           ↓
 ┌────────────────────────────────────────────────────────────────┐
 │          VALIDATE (Great Expectations)                         │
-│  Quality Assertions & Data Profiling                          │
-│  • Range validations (numeric bounds)                         │
-│  • Uniqueness checks                                          │
-│  • Completeness validation                                    │
-│  • Schema conformance                                         │
+│  Quality Assertions & Data Profiling                           │
+│  • Range validations (numeric bounds)                          │
+│  • Uniqueness checks                                           │
+│  • Completeness validation                                     │ 
+│  • Schema conformance                                          │
 └────────────────────────────────────────────────────────────────┘
 ```
 
 ## Verified Commands
 
-### 1. dbt debug ✓ PASS
+### 1. dbt debug 
 **Status**: GCP connection verified & operational
 ```
-✓ profiles.yml validation: OK
-✓ dbt_project.yml validation: OK  
-✓ Git dependency: OK found
-✓ BigQuery connection test: OK connection ok
-✓ All 5 checks passed!
+- profiles.yml validation: OK
+- dbt_project.yml validation: OK  
+- Git dependency: OK found
+- BigQuery connection test: OK connection ok
+- All 5 checks passed!
 ```
 
 **Configuration**:
@@ -48,7 +48,7 @@ A production-ready, feature-complete data pipeline combining dbt, Meltano, and G
 - Location: `EU`
 - Authentication: `OAuth`
 
-### 2. dbt run ✓ PASS
+### 2. dbt run 
 **Status**: All 8 models built successfully
 ```
 Finished running 6 table models, 2 view models
@@ -90,15 +90,15 @@ Done. PASS=8 WARN=0 ERROR=0 SKIP=0 TOTAL=8
 ```
 TEST RESULTS:
 ├── Staging Models (8 tests)
-│   ├── stg_stations: unique/not-null on station_id ✓
-│   ├── stg_trips: unique/not-null on trip_id ✓
-│   └── Duration/coordinate validations ✓
+│   ├── stg_stations: unique/not-null on station_id 
+│   ├── stg_trips: unique/not-null on trip_id 
+│   └── Duration/coordinate validations 
 ├── Mart Models (22 tests)
-│   ├── dim_stations: uniqueness, geographic bounds ✓
-│   ├── fct_trips: foreign keys, categories ✓
-│   ├── trips_by_hour: aggregation verification ✓
-│   └── KPI tables: completeness, bounds ✓
-└── Aggregations (consistency checks) ✓
+│   ├── dim_stations: uniqueness, geographic bounds 
+│   ├── fct_trips: foreign keys, categories 
+│   ├── trips_by_hour: aggregation verification 
+│   └── KPI tables: completeness, bounds 
+└── Aggregations (consistency checks) 
 
 SUMMARY: Completed successfully
 Total Tests: 30
@@ -106,7 +106,7 @@ Results: 30 PASS | 0 FAIL | 0 ERROR
 Execution Time: ~75 seconds
 ```
 
-### 4. Great Expectations Validations ✓ READY
+### 4. Great Expectations Validations 
 **Framework**: Installed and configured
 ```
 VALIDATION SUITE: london_bicycles_validations
@@ -194,10 +194,10 @@ Layer              Models  Tests  Pass Rate
 ─────────────────────────────────────────
 Staging              2      8     100%
 Dimensions           1      4     100%
-Facts               2      10    100%
-KPIs                3       8     100%
+Facts                2     10     100%
+KPIs                 3      8     100%
 ─────────────────────────────────────────
-Total              8      30    100%
+Total                8     30     100%
 ```
 
 ## ELT Pipeline Components
@@ -388,13 +388,13 @@ ORDER BY quarter DESC;
 
 | Tool | Version | Status |
 |------|---------|--------|
-| dbt-core | 1.9.6 | ✓ Installed |
-| dbt-bigquery | 1.9.2 | ✓ Installed |
-| Python | 3.11.13 | ✓ Installed |
-| Meltano | Latest | ✓ Installed |
-| Great Expectations | Latest | ✓ Installed |
-| Google BigQuery | - | ✓ Connected |
-| Conda (dagster) | Environment | ✓ Active |
+| dbt-core | 1.9.6 | Installed |
+| dbt-bigquery | 1.9.2 | Installed |
+| Python | 3.11.13 | Installed |
+| Meltano | Latest | Installed |
+| Great Expectations | Latest | Installed |
+| Google BigQuery | - | Connected |
+| Conda (dagster) | Environment | Active |
 
 ## Project Files
 
@@ -424,14 +424,14 @@ ORDER BY quarter DESC;
 
 ```
 Status Summary:
-├── ✓ dbt Configuration: VERIFIED
-├── ✓ GCP Connection: VERIFIED
-├── ✓ Models (8): ALL BUILDING
-├── ✓ Tests (30+): ALL PASSING
-├── ✓ Great Expectations: READY
-├── ✓ Meltano ELT: CONFIGURED
-├── ✓ Documentation: COMPLETE
-└── ✓ Sample Data: LOADED
+├── dbt Configuration: VERIFIED
+├── GCP Connection: VERIFIED
+├── Models (8): ALL BUILDING
+├── Tests (30+): ALL PASSING
+├── Great Expectations: READY
+├── Meltano ELT: CONFIGURED
+├── Documentation: COMPLETE
+└── Sample Data: LOADED
 
 Performance:
 ├── Full Pipeline Runtime: ~45 seconds
@@ -479,11 +479,12 @@ New Features Added:
 
 ## Support & References
 
-- **dbt Docs**: https://docs.getdbt.com/
-- **Meltano Docs**: https://meltano.com/docs/
-- **Great Expectations**: https://docs.greatexpectations.io/
+- **dbt Documention**: https://docs.getdbt.com/
+- **Meltano Documention**: https://meltano.com/docs/
+- **Great Expectations Documention**: https://docs.greatexpectations.io/
+- **Dagster Documention**: https://docs.dagster.io/
 - **BigQuery**: https://cloud.google.com/bigquery
-
+- **London Bicycle Hires - by Greater London Authority**:  https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles
 ---
 
 **Project**: London Bicycles  
