@@ -1,7 +1,7 @@
 # Dagster ELT Pipeline Setup Guide
 
 ## Overview
-The London Bicycles ELT pipeline is now orchestrated with **Dagster** instead of Apache Airflow. This allows you to manage and monitor the complete Extract → Load → Transform → Validate workflow through the Dagster UI.
+The London Bicycles ELT pipeline orchestration with **Dagster**. This allows managing and monitoring the complete ELT pipeline orchestrated with Extract → Load → Transform → Validate workflow through the Dagster UI.
 
 ## Pipeline Components
 
@@ -81,7 +81,7 @@ orchestrators:
 
 ## Command Line Alternative
 
-If you prefer CLI instead of UI:
+If prefer CLI instead of UI:
 
 ```bash
 # Run the ELT job
@@ -100,7 +100,7 @@ dagster asset list -f dagster_assets.py
 ┌─────────────────────────────────────────┐
 │ run_meltano_extract_load()              │
 │ - Execute: meltano run extract-load     │
-│ - Source: pydrive-colab-2/london_bikes  │
+│ - Source: 'GCP Project ID'/london_bikes │
 │ - Target: google-bicycles_raw           │
 └──────────────┬──────────────────────────┘
                │
@@ -167,12 +167,12 @@ For development, use the UI to manually trigger runs.
 
 ## Next Steps
 
-1. ✅ Start Dagster: `dagster dev`
-2. ✅ Navigate to http://localhost:3000
-3. ✅ Click "Launch Run" on london_bicycles_full_elt job
-4. ✅ Monitor pipeline execution
-5. ✅ View asset lineage and data quality metrics
-6. ✅ Deploy to production with persistent database
+1. Start Dagster: `dagster dev`
+2. Navigate to http://localhost:3000
+3. Click "Launch Run" on london_bicycles_full_elt job
+4. Monitor pipeline execution
+5. View asset lineage and data quality metrics
+6. Deploy to production with persistent database
 
 ---
 
