@@ -26,7 +26,7 @@ Data Quality Reports
 ## Configuration
 
 ### GCP Project Setup
-- **Project ID**: `pydrive-colab-2`
+- **Project ID**: `GCP Project ID`
 - **Dataset**: `london_bicycles`
 - **Location**: `EU`
 - **Authentication**: OAuth (gcloud auth application-default login)
@@ -105,24 +105,24 @@ Intermediate transformations from raw sources
 - Enriched with station names mapped from dimension
 - Trip duration categorization (short/medium/long/very_long)
 
-#### **Aggregate & KPI Tables** (NEW)
+#### **Aggregate & KPI Tables**
 
 **trips_by_hour**
-- Hour-level trip metrics (7 rows)
+- Hour-level trip metrics
 - Metrics: trip counts, avg/min/max duration, unique bikes/users
 
-**seasonal_trips** ⭐ **NEW**
+**seasonal_trips** 
 - Monthly analysis of trip patterns
 - Metrics: total trips, unique bikes, subscriber/casual split
 - Useful for: Seasonal trend analysis, yearly planning
 
-**station_trip_volume** ⭐ **NEW**
+**station_trip_volume** 
 - High-volume station ranking and analysis
 - Metrics: trip counts, bikes used, subscriber percentage, volume rank
 - Identifies busiest stations by geographic area
 - Useful for: Station optimization, resource allocation
 
-**quarterly_area_analysis** ⭐ **NEW**
+**quarterly_area_analysis**
 - Quarterly trends by geographic area and user type
 - Metrics: trip counts, duration stats, unique bikes, stations visited
 - Compares Central vs. Outer London usage patterns
@@ -176,7 +176,7 @@ All 31 model tests pass successfully, validating data quality and schema assumpt
 
 ## Commands
 
-### Initialize dbt (already done)
+### Initialize dbt
 ```bash
 $ dbt init london_bicycles_dbt
 ```
@@ -213,7 +213,7 @@ $ dbt docs serve  # localhost:8000
 
 ## Sample Outputs
 
-After running `dbt run`, you'll have:
+After running `dbt run`:
 
 **Staging Tables** (in `london_bicycles_staging` schema):
 - `stg_stations` - 15 stations with cleaned attributes
@@ -304,3 +304,4 @@ For larger datasets, consider:
 - [dbt Documentation](https://docs.getdbt.com/)
 - [BigQuery dbt Adapter](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup)
 - [Google Cloud BigQuery Python](https://docs.cloud.google.com/bigquery/docs/reference/libraries#client-libraries-usage-python)
+- [London Bicycle Hires - by Greater London Authority](https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles)
