@@ -477,7 +477,7 @@ New Features Added:
    - Implement additional validations
    - Integrate operational metrics
 
-## 📞 Support & References
+## Support & References
 
 - **dbt Docs**: https://docs.getdbt.com/
 - **Meltano Docs**: https://meltano.com/docs/
