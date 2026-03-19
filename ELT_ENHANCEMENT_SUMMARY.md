@@ -181,7 +181,7 @@ $ python great_expectations_validator.py
 | fct_trips | Table | 20 | Detailed trip facts |
 | trips_by_hour | Table | 7 | Hourly trip aggregates |
 
-**KPI Layer (3 Tables)** ⭐
+**KPI Layer (3 Tables)** 
 | Model | Type | Records | Purpose |
 |-------|------|---------|---------|
 | seasonal_trips | Table | 1-12 | Monthly trend analysis |
