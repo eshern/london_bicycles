@@ -72,7 +72,7 @@ STORAGE USED: ~6 KB (sample data)
 Done. PASS=8 WARN=0 ERROR=0 SKIP=0 TOTAL=8
 ```
 
-**New KPI Models** ⭐:
+**KPI Models**:
 1. **seasonal_trips**: Monthly trend analysis
    - Columns: month, year, month_name, total_trips, unique_bikes, subscriber_trips, casual_trips
    - Use case: Seasonal demand planning, user behavior trends
@@ -85,7 +85,7 @@ Done. PASS=8 WARN=0 ERROR=0 SKIP=0 TOTAL=8
    - Columns: quarter, year, station_area, user_type, trip_count, avg_duration
    - Use case: Regional strategy, capacity planning
 
-### 3. dbt test ✓ PASS
+### 3. dbt test 
 **Status**: All 30 data quality tests passing
 ```
 TEST RESULTS:
@@ -112,23 +112,23 @@ Execution Time: ~75 seconds
 VALIDATION SUITE: london_bicycles_validations
 
 Staging Layer:
-  ✓ validate_staging_trips()
+- validate_staging_trips()
     - Trip ID uniqueness
     - Duration range validation (0-100 minutes)
     - Not-null constraints on trip_id, dates, stations
     
-  ✓ validate_staging_stations()
+- validate_staging_stations()
     - Station ID uniqueness
     - Valid geographic coordinates
     - London area bounds (51.3-51.7N, -0.3-0.1E)
 
 Mart Layer:
-  ✓ validate_mart_fct_trips()
+- validate_mart_fct_trips()
     - Trip facts consistency
     - Duration category validation
     - Foreign key references
     
-  ✓ validate_mart_dim_stations()
+- validate_mart_dim_stations()
     - Station dimension completeness
     - Area classification validation
     - Coordinate bound checks
@@ -137,7 +137,7 @@ Mart Layer:
 **Usage**:
 ```bash
 $ python great_expectations_validator.py
-# Output: ✓ Validation complete
+# Output: Validation complete
 ```
 
 ## Data Models Summary
@@ -167,7 +167,7 @@ $ python great_expectations_validator.py
 | fct_trips | 20 | Individual trip record |
 | trips_by_hour | 7 | Hourly aggregate |
 
-**KPI Layer** (Permanent tables) ⭐
+**KPI Layer** (Permanent tables)
 | Model | Records | Business Purpose |
 |-------|---------|-----------------|
 | seasonal_trips | 1-12 | Monthly trend analysis |
@@ -479,12 +479,12 @@ New Features Added:
 
 ## Support & References
 
-- **dbt Documention**: https://docs.getdbt.com/
-- **Meltano Documention**: https://meltano.com/docs/
-- **Great Expectations Documention**: https://docs.greatexpectations.io/
-- **Dagster Documention**: https://docs.dagster.io/
-- **BigQuery**: https://cloud.google.com/bigquery
-- **London Bicycle Hires - by Greater London Authority**:  https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles
+- [dbt Documention](https://docs.getdbt.com/)
+- [Meltano Documention](https://meltano.com/docs/)
+- [Great Expectations Documention](https://docs.greatexpectations.io/)
+- [Dagster Documention](https://docs.dagster.io/)
+- [BigQuery](https://cloud.google.com/bigquery)
+- [London Bicycle Hires - by Greater London Authority](https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles)
 ---
 
 **Project**: London Bicycles  
