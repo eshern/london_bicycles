@@ -1,0 +1,82 @@
+[32m2026-03-19 11:26:44 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 28e7b959-f676-48ef-9eeb-7ecb1c308158 - 95226 - LOGS_CAPTURED - Started capturing logs in process (pid: 95226).
+[32m2026-03-19 11:26:45 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 28e7b959-f676-48ef-9eeb-7ecb1c308158 - 95226 - london_bicycles_kpi_station_volume - STEP_START - Started execution of step "london_bicycles_kpi_station_volume".
+Exception while writing logger call to event log: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO event_logs (run_id, event, dagster_event_type, timestamp, step_key, asset_key, partition) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('28e7b959-f676-48ef-9eeb-7ecb1c308158', '{"__class__": "EventLogEntry", "dagster_event": {"__class__": "DagsterEvent", "event_specific_data": {"__class__": "StepOutputData", "metadata_entrie ... (1257 characters truncated) ... bicycles_kpi_station_volume", "timestamp": 1773890805.9614563, "user_message": "Yielded output \\"result\\" of type \\"Any\\". (Type check passed)."}', 'STEP_OUTPUT', '2026-03-19 03:26:45.961456', 'london_bicycles_kpi_station_volume', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[32m2026-03-19 11:26:57 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 28e7b959-f676-48ef-9eeb-7ecb1c308158 - 95226 - london_bicycles_kpi_station_volume - STEP_FAILURE - Execution of step "london_bicycles_kpi_station_volume" failed.
+
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO event_logs (run_id, event, dagster_event_type, timestamp, step_key, asset_key, partition) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('28e7b959-f676-48ef-9eeb-7ecb1c308158', '{"__class__": "EventLogEntry", "dagster_event": {"__class__": "DagsterEvent", "event_specific_data": {"__class__": "StepOutputData", "metadata_entrie ... (1257 characters truncated) ... bicycles_kpi_station_volume", "timestamp": 1773890805.9614563, "user_message": "Yielded output \\"result\\" of type \\"Any\\". (Type check passed)."}', 'STEP_OUTPUT', '2026-03-19 03:26:45.961456', 'london_bicycles_kpi_station_volume', None, None)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+Stack Trace:
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_plan.py", line 245, in dagster_event_sequence_for_step
+    yield from check.generator(step_events)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 508, in core_dagster_event_sequence_for_step
+    for evt in _type_check_and_store_output(step_context, user_event):
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 552, in _type_check_and_store_output
+    yield from _type_check_output(step_context, step_output_handle, output)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 410, in _type_check_output
+    yield DagsterEvent.step_output_event(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/events/__init__.py", line 877, in step_output_event
+    return DagsterEvent.from_step(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/events/__init__.py", line 471, in from_step
+    log_step_event(step_context, event, batch_metadata)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/events/__init__.py", line 343, in log_step_event
+    step_context.log.log_dagster_event(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/log_manager.py", line 394, in log_dagster_event
+    self.log(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/log_manager.py", line 424, in log
+    self._log(level, msg, args, **kwargs)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/logging/__init__.py", line 1634, in _log
+    self.handle(record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/logging/__init__.py", line 1644, in handle
+    self.callHandlers(record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/logging/__init__.py", line 1706, in callHandlers
+    hdlr.handle(record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/logging/__init__.py", line 978, in handle
+    self.emit(record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/log_manager.py", line 268, in emit
+    handler.handle(dagster_record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/logging/__init__.py", line 978, in handle
+    self.emit(record)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/instance/__init__.py", line 261, in emit
+    self._instance.handle_new_event(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/instance/__init__.py", line 2463, in handle_new_event
+    self._event_storage.store_event(events[0])
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/dagster/_core/storage/event_log/sqlite/sqlite_event_log.py", line 258, in store_event
+    conn.execute(insert_event_statement)
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+
+The above exception was caused by the following exception:
+sqlite3.OperationalError: database is locked
+
+Stack Trace:
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/shern/anaconda3/envs/dagster/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+[0m
