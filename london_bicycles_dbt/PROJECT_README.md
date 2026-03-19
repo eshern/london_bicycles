@@ -302,6 +302,9 @@ For larger datasets, consider:
 ## References
 
 - [dbt Documentation](https://docs.getdbt.com/)
+- [Meltano Documention](https://meltano.com/docs/)
+- [Great Expectations Documentation](https://docs.greatexpectations.io/)
+- [Dagster Docs](https://docs.dagster.io/)
 - [BigQuery dbt Adapter](https://docs.getdbt.com/reference/warehouse-setups/bigquery-setup)
-- [Google Cloud BigQuery Python](https://docs.cloud.google.com/bigquery/docs/reference/libraries#client-libraries-usage-python)
+- [Google Cloud BigQuery](https://docs.cloud.google.com/bigquery/docs/reference/libraries#client-libraries-usage-python)
 - [London Bicycle Hires - by Greater London Authority](https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles)
