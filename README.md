@@ -2,14 +2,14 @@
 
 ## Complete ELT Pipeline Deployed
 
-A production-ready, feature-complete data ELT pipeline combining dbt, Meltano, Great Expectations data quality test and validation is fully operational.
+A production-ready, feature-complete data ELT pipeline combining dbt, Dagster, and Great Expectations data quality testing is fully operational.
 
 ## Architecture Overview
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│          EXTRACT & LOAD (Meltano)                              │
-│  BigQuery Public Data / CSV Seeds → BigQuery Landing Zone      │
+│          SEED DATA LOADING (dbt)                               │
+│  CSV Seeds → BigQuery Landing Zone                             │
 └────────────────────────────────────────────────────────────────┘
                           ↓
 ┌────────────────────────────────────────────────────────────────┐
@@ -27,6 +27,14 @@ A production-ready, feature-complete data ELT pipeline combining dbt, Meltano, G
 │  • Uniqueness checks                                           │
 │  • Completeness validation                                     │ 
 │  • Schema conformance                                          │
+└────────────────────────────────────────────────────────────────┘
+                          ↓
+┌────────────────────────────────────────────────────────────────┐
+│          ORCHESTRATION (Dagster)                               │
+│  Job Scheduling, Monitoring & Error Handling                   │
+│  • 4 Jobs with automated asset lineage                         │
+│  • Web UI for real-time monitoring                             │
+│  • Single-process execution for stability                      │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -55,15 +63,15 @@ Finished running 6 table models, 2 view models
 
 MODELS CREATED:
 ├── Staging (2 views)
-│   ├── london_bicycles_staging.stg_stations ✓
-│   └── london_bicycles_staging.stg_trips ✓
+│   ├── london_bicycles_staging.stg_stations 
+│   └── london_bicycles_staging.stg_trips 
 └── Marts (6 tables)
-    ├── london_bicycles_marts.dim_stations ✓
-    ├── london_bicycles_marts.fct_trips ✓ 
-    ├── london_bicycles_marts.trips_by_hour ✓ 
-    ├── london_bicycles_marts.seasonal_trips ✓
-    ├── london_bicycles_marts.station_trip_volume ✓ 
-    └── london_bicycles_marts.quarterly_area_analysis ✓
+    ├── london_bicycles_marts.dim_stations 
+    ├── london_bicycles_marts.fct_trips  
+    ├── london_bicycles_marts.trips_by_hour  
+    ├── london_bicycles_marts.seasonal_trips 
+    ├── london_bicycles_marts.station_trip_volume  
+    └── london_bicycles_marts.quarterly_area_analysis 
 
 EXECUTION TIME: ~32 seconds
 TOTAL RECORDS CREATED: 61 records
@@ -202,29 +210,25 @@ Total                8     30     100%
 
 ## ELT Pipeline Components
 
-### 1. Extract & Load (Meltano)
-**Status**: Configured and ready for production data
+### 1. Orchestration (Dagster)
+**Status**: Fully configured and operational
 
-**Components**:
-- `tap-bigquery`: Extract data from BigQuery
-- `target-bigquery`: Load to BigQuery landing zone
+**Key Features**:
+- 4 Jobs with 7 data assets
+- Web UI at `localhost:3000`
+- Single-process executor for stable execution
+- Automated lineage tracking
 
-**Configuration** (meltano.yml):
-```yaml
-schedules:
-  - name: daily_extract_load
-    interval: "0 2 * * *"  # 2 AM daily
-    
-jobs:
-  - name: extract-load
-    tasks:
-      - tap-bigquery target-bigquery
-```
+**Jobs**:
+- `london_bicycles_full_elt`: Complete pipeline (seed → dbt → GX)
+- `staging_assets_job`: Staging layer only
+- `marts_assets_job`: Marts layer only
+- `all_assets_job`: All assets with dependencies
 
 **Usage**:
 ```bash
-$ meltano run extract-load  # Run once
-$ meltano schedule list     # View schedules
+$ dagster dev                    # Launch UI
+$ dagster job execute -f dagster_assets.py -j london_bicycles_full_elt
 ```
 
 ### 2. Transform (dbt)
@@ -311,31 +315,28 @@ $ cd london_bicycles_dbt
 $ bash setup_elt_pipeline.sh
 ```
 
-### Step 2: Load Seed Data
+### Step 2: Launch Dagster UI
 ```bash
-$ dbt seed
-# Loads CSV into BigQuery
+$ dagster dev
+# Launches at http://localhost:3000
 ```
 
-### Step 3: Build Full Pipeline
+### Step 3: Execute Full Pipeline via Dagster
+From the Dagster UI:
+1. Navigate to "Jobs"
+2. Select "london_bicycles_full_elt"
+3. Click "Launch Run"
+4. Monitor execution in real-time
+
+### Step 4: Or Run via CLI
 ```bash
-$ dbt run
-# Creates 2 views + 6 tables
+$ dbt seed          # Load seed data
+$ dbt run           # Create models
+$ dbt test          # Run 30+ tests
+$ python great_expectations_validator.py  # Validate
 ```
 
-### Step 4: Validate Data Quality
-```bash
-$ dbt test
-# Runs 30+ tests
-```
-
-### Step 5: Run Great Expectations
-```bash
-$ python great_expectations_validator.py
-# Validates all layers
-```
-
-### Step 6: Generate Documentation
+### Step 5: Generate Documentation
 ```bash
 $ dbt docs generate
 $ dbt docs serve
@@ -390,8 +391,8 @@ ORDER BY quarter DESC;
 |------|---------|--------|
 | dbt-core | 1.9.6 | Installed |
 | dbt-bigquery | 1.9.2 | Installed |
+| Dagster | 1.9.13 | Installed |
 | Python | 3.11.13 | Installed |
-| Meltano | Latest | Installed |
 | Great Expectations | Latest | Installed |
 | Google BigQuery | - | Connected |
 | Conda (dagster) | Environment | Active |
