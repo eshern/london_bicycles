@@ -3,10 +3,10 @@
 
 ### Overview
 Enhanced the London Bicycles dbt project with:
-- ✅ 3 new KPI marts for business intelligence
-- ✅ Meltano ELT orchestration framework  
-- ✅ Great Expectations data quality validation
-- ✅ Comprehensive documentation updates
+- 3 new KPI marts for business intelligence
+- Meltano ELT orchestration framework  
+- Great Expectations data quality validation
+- Comprehensive documentation updates
 
 ---
 
@@ -14,7 +14,7 @@ Enhanced the London Bicycles dbt project with:
 
 ### 1. New Business KPI Tables (3 Models)
 
-#### **seasonal_trips** ⭐ NEW
+#### **seasonal_trips** 
 - **Location**: `models/marts/seasonal_trips.sql`
 - **Type**: Table (materialized)
 - **Records**: Monthly aggregations
@@ -29,7 +29,7 @@ Enhanced the London Bicycles dbt project with:
   - Forecast capacity requirements
   - Analyze customer behavior by season
 
-#### **station_trip_volume** ⭐ NEW
+#### **station_trip_volume**
 - **Location**: `models/marts/station_trip_volume.sql`
 - **Type**: Table (materialized)
 - **Records**: 15 station rankings
@@ -44,7 +44,7 @@ Enhanced the London Bicycles dbt project with:
   - Plan preventive maintenance
   - Allocate resources strategically
 
-#### **quarterly_area_analysis** ⭐ NEW
+#### **quarterly_area_analysis**
 - **Location**: `models/marts/quarterly_area_analysis.sql`
 - **Type**: Table (materialized)
 - **Records**: Quarterly breakdowns by area
@@ -191,11 +191,11 @@ $ python great_expectations_validator.py
 ### Data Quality Tests: 30+
 
 **Test Categories**:
-- ✓ Uniqueness (primary keys)
-- ✓ Not-null (critical columns)
-- ✓ Referential integrity (foreign keys)
-- ✓ Accepted values (categories)
-- ✓ Numeric ranges (duration, coordinates)
+- Uniqueness (primary keys)
+- Not-null (critical columns)
+- Referential integrity (foreign keys)
+- Accepted values (categories)
+- Numeric ranges (duration, coordinates)
 
 ---
 
@@ -263,41 +263,43 @@ Quality Reports
 
 ---
 
-## ✅ Verification Results
+## Verification Results
 
 ### dbt debug
 ```
-✓ profiles.yml: OK
-✓ dbt_project.yml: OK
-✓ BigQuery connection: OK
-✓ All checks passed!
+- profiles.yml: OK
+- dbt_project.yml: OK
+- BigQuery connection: OK
+- All checks passed!
 ```
 
 ### dbt run
 ```
 8/8 models created successfully:
-  ✓ 2 staging views
-  ✓ 4 original mart tables
-  ✓ 3 new KPI tables
+  - 2 staging views
+  - 4 original mart tables
+  - 3 new KPI tables
 Completed successfully
 ```
 
 ### dbt test
 ```
 30+ tests executed
-✓ 30 PASS
-✗ 0 FAIL
-✗ 0 ERROR
+- 30 PASS
+- 0 FAIL
+- 0 ERROR
 Test coverage: 100%
 ```
 
 ### Great Expectations (Ready)
 ```
-✓ Validation suite configured
-✓ 4 validation checkpoints defined
-✓ Range, uniqueness, and completeness checks
-✓ Geographic bounds validation
-Ready to run: python great_expectations_validator.py
+- Validation suite configured
+- 4 validation checkpoints defined
+- Range, uniqueness, and completeness checks
+- Geographic bounds validation
+Ready to run:
+```bash
+python great_expectations_validator.py
 ```
 
 ---
@@ -419,13 +421,13 @@ OVERALL                ✓ Production ⭐⭐⭐⭐⭐
 
 ## Key Highlights
 
-✅ **Production-Ready**: All components operational  
-✅ **Data Quality**: 30+ automated tests + Great Expectations  
-✅ **Scalable Architecture**: Views (staging) + Tables (marts)  
-✅ **Business Intelligence**: 3 specialized KPI tables  
-✅ **Well-Documented**: Comprehensive README and execution summary  
-✅ **Orchestration Ready**: Meltano ELT configuration included  
-✅ **Extensible**: Easy to add new models and marts  
+- **Production-Ready**: All components operational  
+- **Data Quality**: 30+ automated tests + Great Expectations  
+- **Scalable Architecture**: Views (staging) + Tables (marts)  
+- **Business Intelligence**: 3 specialized KPI tables  
+- **Well-Documented**: Comprehensive README and execution summary  
+- **Orchestration Ready**: Meltano ELT configuration included  
+- **Extensible**: Easy to add new models and marts  
 
 ---
 
