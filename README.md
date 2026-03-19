@@ -485,6 +485,11 @@ New Features Added:
 - [Dagster Documention](https://docs.dagster.io/)
 - [BigQuery](https://cloud.google.com/bigquery)
 - [London Bicycle Hires - by Greater London Authority](https://console.cloud.google.com/marketplace/product/greater-london-authority/london-bicycles)
+
+## Acknowledgement
+
+Portions of this repo’s framework documentation and correction were supported by Anthropic’s Claude, used for drafting and refining explanatory text.
+
 ---
 
 **Project**: London Bicycles  
