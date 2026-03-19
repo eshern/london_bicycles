@@ -1,0 +1,74 @@
+version: 1
+project_id: london_bicycles_meltano
+environments:
+  dev:
+    outputs:
+      - name: bigquery
+        type: bigquery
+  prod:
+    outputs:
+      - name: bigquery
+        type: bigquery
+
+plugins:
+  extractors:
+    - name: tap-bigquery
+      variant: meltanolabs
+      pip_url: git+https://github.com/MeltanoLabs/tap-bigquery.git
+      config:
+        project_id: pydrive-colab-2
+        location: EU
+        table_pattern: "london_bicycles\\..*"
+        state_messages_per_second: 100
+        stream_maps:
+          "london_bicycles-stations":
+            key_properties:
+              - station_id
+
+  loaders:
+    - name: target-bigquery
+      variant: hotgluexyz
+      pip_url: pipelinewise-target-bigquery==1.0.0
+      config:
+        project_id: pydrive-colab-2
+        location: EU
+        dataset: london_bicycles_raw
+        schema_search_path:
+          - source
+
+  transformers:
+    - name: dbt-bigquery
+      variant: dbt-labs
+      pip_url: dbt-bigquery~=1.9.0
+
+  orchestrators:
+    - name: dagster
+      variant: dagster
+      pip_url: dagster~=1.8.0 dagster-webserver~=1.8.0
+
+schedules:
+  - name: daily_extract_load
+    job: extract-load
+    interval: "0 2 * * *"
+    start_date: 2024-01-01
+
+  - name: daily_transform
+    job: transform
+    interval: "0 3 * * *"
+    start_date: 2024-01-01
+
+jobs:
+  - name: extract-load
+    tasks:
+      - tap-bigquery target-bigquery
+  
+  - name: transform
+    tasks:
+      - dbt-bigquery:run
+      - dbt-bigquery:test
+
+  - name: full_pipeline
+    tasks:
+      - tap-bigquery target-bigquery
+      - dbt-bigquery:run
+      - dbt-bigquery:test

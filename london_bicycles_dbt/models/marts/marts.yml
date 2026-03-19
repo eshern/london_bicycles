@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: fct_trips
+    description: "Fact table containing detailed trip information with enriched station names and calculated metrics"
+    columns:
+      - name: trip_id
+        description: "Unique trip identifier"
+        tests:
+          - unique
+          - not_null
+      - name: bike_id
+        description: "Bike identifier"
+        tests:
+          - not_null
+      - name: start_station_id
+        description: "Starting station ID"
+        tests:
+          - not_null
+      - name: end_station_id
+        description: "Ending station ID"
+        tests:
+          - not_null
+      - name: start_station_name
+        description: "Name of starting station"
+      - name: end_station_name
+        description: "Name of ending station"
+      - name: start_date
+        description: "Start date and time of trip"
+        tests:
+          - not_null
+      - name: end_date
+        description: "End date and time of trip"
+        tests:
+          - not_null
+      - name: trip_date
+        description: "Date of the trip"
+        tests:
+          - not_null
+      - name: duration_minutes
+        description: "Trip duration in minutes"
+        tests:
+          - not_null
+      - name: start_hour
+        description: "Hour of day when trip started (0-23)"
+      - name: day_of_week
+        description: "Day of the week (1=Sunday, 7=Saturday)"
+      - name: user_type
+        description: "Type of user (Subscriber or Casual)"
+      - name: member_gender
+        description: "Gender category of the member"
+      - name: trip_duration_category
+        description: "Categorized trip duration (short, medium, long, very_long)"
+
+  - name: dim_stations
+    description: "Dimension table for bike rental stations with geographic and area classifications"
+    columns:
+      - name: station_id
+        description: "Unique station identifier"
+        tests:
+          - unique
+          - not_null
+      - name: station_name
+        description: "Station name"
+        tests:
+          - not_null
+      - name: latitude
+        description: "Latitude coordinate"
+        tests:
+          - not_null
+      - name: longitude
+        description: "Longitude coordinate"
+        tests:
+          - not_null
+      - name: station_area
+        description: "Geographic area classification (Central or Outer)"
+
+  - name: trips_by_hour
+    description: "Aggregated view of trips by date and hour with summary metrics"
+    columns:
+      - name: trip_date
+        description: "Date of trips"
+        tests:
+          - not_null
+      - name: start_hour
+        description: "Hour of day (0-23)"
+        tests:
+          - not_null
+      - name: num_trips
+        description: "Total number of trips in this hour"
+        tests:
+          - not_null
+      - name: avg_trip_duration_minutes
+        description: "Average trip duration in minutes"
+      - name: min_trip_duration_minutes
+        description: "Minimum trip duration in minutes"
+      - name: max_trip_duration_minutes
+        description: "Maximum trip duration in minutes"
+      - name: num_unique_bikes
+        description: "Number of unique bikes used"
+      - name: num_user_types
+        description: "Number of different user types"

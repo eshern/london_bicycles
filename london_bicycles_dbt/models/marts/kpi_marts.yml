@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: seasonal_trips
+    description: "Monthly and seasonal trip analysis showing trends across the year"
+    columns:
+      - name: month
+        description: "Month number (1-12)"
+        tests:
+          - not_null
+      - name: year
+        description: "Year of the trips"
+        tests:
+          - not_null
+      - name: month_name
+        description: "Full month name"
+      - name: total_trips
+        description: "Total number of trips in the month"
+        tests:
+          - not_null
+      - name: unique_bikes
+        description: "Number of unique bikes used"
+      - name: user_type_count
+        description: "Count of distinct user types"
+      - name: avg_trip_duration_minutes
+        description: "Average trip duration in minutes"
+      - name: min_trip_duration_minutes
+        description: "Minimum trip duration in minutes"
+      - name: max_trip_duration_minutes
+        description: "Maximum trip duration in minutes"
+      - name: subscriber_trips
+        description: "Number of subscriber trips"
+      - name: casual_trips
+        description: "Number of casual user trips"
+
+  - name: station_trip_volume
+    description: "High-volume station analysis with trip counts, rankings, and user mix"
+    columns:
+      - name: start_station_id
+        description: "Station identifier"
+        tests:
+          - not_null
+      - name: start_station_name
+        description: "Station name"
+        tests:
+          - not_null
+      - name: latitude
+        description: "Station latitude"
+      - name: longitude
+        description: "Station longitude"
+      - name: station_area
+        description: "Geographic area (Central/Outer)"
+      - name: total_trips
+        description: "Total trip count from this station"
+        tests:
+          - not_null
+      - name: unique_bikes_used
+        description: "Number of unique bikes started from this station"
+      - name: avg_trip_duration_minutes
+        description: "Average duration of trips from this station"
+      - name: min_trip_duration_minutes
+        description: "Shortest trip from this station"
+      - name: max_trip_duration_minutes
+        description: "Longest trip from this station"
+      - name: subscriber_trip_count
+        description: "Count of subscriber trips"
+      - name: casual_trip_count
+        description: "Count of casual user trips"
+      - name: subscriber_trip_percentage
+        description: "Percentage of trips by subscribers"
+      - name: station_trip_volume_rank
+        description: "Ranking by trip volume (1 = highest)"
+        tests:
+          - not_null
+
+  - name: quarterly_area_analysis
+    description: "Quarterly analysis of trip patterns by geographic area and user type"
+    columns:
+      - name: quarter
+        description: "Quarter number (1-4)"
+        tests:
+          - not_null
+      - name: year
+        description: "Year of analysis"
+        tests:
+          - not_null
+      - name: station_area
+        description: "Geographic area (Central/Outer)"
+      - name: user_type
+        description: "User type (Subscriber/Casual)"
+      - name: trip_count
+        description: "Number of trips in this quarter"
+        tests:
+          - not_null
+      - name: avg_duration_minutes
+        description: "Average trip duration"
+      - name: unique_bikes
+        description: "Count of unique bikes used"
+      - name: stations_visited
+        description: "Count of unique stations visited"

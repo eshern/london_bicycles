@@ -1,0 +1,9 @@
+# Dagster Instance Configuration for Local Development
+# Using default SQLite storage in .dagster_home directory
+
+# All storage uses SQLite by default
+# If you experience database locks, set DAGSTER_HOME to your preferred location:
+#   export DAGSTER_HOME=/path/to/dagster_home
+# 
+# The in_process_executor is configured in dagster_assets.py to avoid multi-process
+# SQLite locking issues during local development.

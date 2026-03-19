@@ -1,0 +1,13 @@
+london_bicycles_dbt:
+  outputs:
+    dev:
+      dataset: london_bicycles
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      location: EU
+      method: oauth # OAuth uses gcloud auth application-default login. 'service-account' requires JSON key file.
+      priority: interactive 
+      project: pydrive-colab-2 #project: '<Your Project ID>'
+      threads: 1
+      type: bigquery
+  target: dev

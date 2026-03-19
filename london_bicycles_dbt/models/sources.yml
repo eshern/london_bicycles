@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: bigquery_public_data
+    description: "Raw data from Google BigQuery public datasets"
+    database: bigquery-public-data
+    schema: london_bicycles
+    meta:
+      external_location: "US"  # Public datasets are in US location
+    tables:
+      - name: stations
+        description: "London Bicycles rental station information"
+        
+      - name: trips
+        description: "London Bicycles trip records"

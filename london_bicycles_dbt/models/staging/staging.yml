@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: stg_stations
+    description: "Cleaned staging model for bike stations with standardized naming"
+    columns:
+      - name: station_id
+        description: "Unique identifier for the station"
+        tests:
+          - unique
+          - not_null
+      - name: station_name
+        description: "Name of the station"
+        tests:
+          - not_null
+      - name: latitude
+        description: "Latitude coordinate"
+        tests:
+          - not_null
+      - name: longitude
+        description: "Longitude coordinate"
+        tests:
+          - not_null
+
+  - name: stg_trips
+    description: "Cleaned staging model for bike trips with calculated metrics and date components"
+    columns:
+      - name: trip_id
+        description: "Unique identifier for the trip"
+        tests:
+          - unique
+          - not_null
+      - name: duration
+        description: "Trip duration in seconds"
+        tests:
+          - not_null
+      - name: duration_minutes
+        description: "Trip duration in minutes (calculated)"
+        tests:
+          - not_null
+      - name: start_station_id
+        description: "Starting station identifier"
+        tests:
+          - not_null
+      - name: end_station_id
+        description: "Ending station identifier"
+        tests:
+          - not_null
+      - name: trip_date
+        description: "Date of the trip"
+        tests:
+          - not_null
+      - name: start_hour
+        description: "Hour of the day when trip started (0-23)"
+      - name: day_of_week
+        description: "Day of the week (1=Sunday, 7=Saturday)"
+      - name: bike_id
+        description: "Bike identifier used for the trip"
+        tests:
+          - not_null
+      - name: user_type
+        description: "Type of user (Subscriber or Casual)"
+      - name: member_gender
+        description: "Gender of the member"
