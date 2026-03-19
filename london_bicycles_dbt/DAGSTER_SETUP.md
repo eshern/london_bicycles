@@ -68,17 +68,6 @@ For each operation, view detailed logs:
 - dbt run/test results
 - Great Expectations validation results
 
-## meltano.yml Configuration
-
-Updated to use Dagster orchestrator:
-
-```yaml
-orchestrators:
-  - name: dagster
-    variant: dagster
-    pip_url: dagster~=1.8.0 dagster-webserver~=1.8.0
-```
-
 ## Command Line Alternative
 
 If prefer CLI instead of UI:
@@ -162,7 +151,6 @@ For development, use the UI to manually trigger runs.
 
 - **BigQuery**: Connection via OAuth (gcloud auth)
 - **dbt**: Configured in profiles.yml
-- **Meltano**: Job definitions in meltano.yml
 - **Great Expectations**: Python validator script
 
 ## Next Steps
