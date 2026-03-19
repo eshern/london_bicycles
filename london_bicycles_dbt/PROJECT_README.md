@@ -42,9 +42,6 @@ Data Quality Reports
 
 ```
 london_bicycles/
-├── meltano.yml                          # Meltano ELT pipeline configuration
-├── great_expectations_config.json       # Great Expectations setup
-├── great_expectations_validator.py      # Python validation script
 ├── setup_elt_pipeline.sh                # Setup script for all tools
 │
 └── london_bicycles_dbt/
@@ -58,9 +55,9 @@ london_bicycles/
     │       ├── dim_stations.sql         # Station dimensions
     │       ├── fct_trips.sql            # Trip facts
     │       ├── trips_by_hour.sql        # Hourly aggregates
-    │       ├── seasonal_trips.sql       # Monthly/seasonal analysis (NEW)
-    │       ├── station_trip_volume.sql  # High-volume station analysis (NEW)
-    │       ├── quarterly_area_analysis.sql # Quarterly geographic analysis (NEW)
+    │       ├── seasonal_trips.sql       # Monthly/seasonal analysis 
+    │       ├── station_trip_volume.sql  # High-volume station analysis 
+    │       ├── quarterly_area_analysis.sql # Quarterly geographic analysis 
     │       ├── marts.yml
     │       └── kpi_marts.yml           # New KPI documentation
     │
@@ -68,6 +65,8 @@ london_bicycles/
     │   ├── stations.csv                 # 15 sample stations
     │   └── trips.csv                    # 20 sample trips
     │
+    ├── great_expectations_config.json   # Great Expectations setup
+    ├── great_expectations_validator.py  # Python validation script
     ├── dbt_project.yml                  # dbt configuration
     ├── profiles.yml                     # BigQuery connection config
     └── macros/
