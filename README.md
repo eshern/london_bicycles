@@ -58,12 +58,12 @@ MODELS CREATED:
 │   ├── london_bicycles_staging.stg_stations ✓
 │   └── london_bicycles_staging.stg_trips ✓
 └── Marts (6 tables)
-    ├── london_bicycles_marts.dim_stations ✓ (15 rows)
-    ├── london_bicycles_marts.fct_trips ✓ (20 rows)
-    ├── london_bicycles_marts.trips_by_hour ✓ (7 rows)
-    ├── london_bicycles_marts.seasonal_trips ✓ (1 row - NEW)
-    ├── london_bicycles_marts.station_trip_volume ✓ (15 rows - NEW)
-    └── london_bicycles_marts.quarterly_area_analysis ✓ (3 rows - NEW)
+    ├── london_bicycles_marts.dim_stations ✓
+    ├── london_bicycles_marts.fct_trips ✓ 
+    ├── london_bicycles_marts.trips_by_hour ✓ 
+    ├── london_bicycles_marts.seasonal_trips ✓
+    ├── london_bicycles_marts.station_trip_volume ✓ 
+    └── london_bicycles_marts.quarterly_area_analysis ✓
 
 EXECUTION TIME: ~32 seconds
 TOTAL RECORDS CREATED: 61 records
