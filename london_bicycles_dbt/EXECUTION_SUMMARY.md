@@ -96,7 +96,7 @@ london_bicycles_dbt/
 
 ### Configuration Files
 - `profiles.yml` - Google BigQuery OAuth connection
-  - Project: `pydrive-colab-2`
+  - Project: `GCP Project ID`
   - Dataset: `london_bicycles`
   - Location: `EU`
   - Method: OAuth
@@ -127,19 +127,19 @@ london_bicycles_dbt/
 ## Business Objects Created
 
 ### Dimension Tables
-**dim_stations** (15 records)
+**dim_stations** 
 - Station location and reference data
 - Geographic area classification (Central/Outer)
 - Useful for: Station analysis, geographic reports
 
 ### Fact Tables
-**fct_trips** (20 records)
+**fct_trips**
 - Detailed trip transactions
 - Enriched with station names and duration categories
 - Useful for: Trip analysis, user behavior patterns
 
 ### Aggregate Tables
-**trips_by_hour** (7 records)
+**trips_by_hour**
 - Hour-level trip metrics
 - Includes: trip counts, duration stats, unique bike/user counts
 - Useful for: Time-series analysis, peak hour identification
