@@ -140,7 +140,7 @@ $ python great_expectations_validator.py
 # Output: ✓ Validation complete
 ```
 
-## 📊 Data Models Summary
+## Data Models Summary
 
 ### Dataset Statistics
 - **Staging Records**: 35 total (15 stations + 20 trips)
@@ -200,7 +200,7 @@ KPIs                3       8     100%
 Total              8      30    100%
 ```
 
-## 🔄 ELT Pipeline Components
+## ELT Pipeline Components
 
 ### 1. Extract & Load (Meltano) ✓
 **Status**: Configured and ready for production data
@@ -255,7 +255,7 @@ $ meltano schedule list     # View schedules
 $ python great_expectations_validator.py  # Run validations
 ```
 
-## 📈 Business KPIs Implemented
+## Business KPIs Implemented
 
 ### KPI #1: Seasonal Trip Analysis ⭐ NEW
 **Table**: `seasonal_trips`
@@ -302,7 +302,7 @@ $ python great_expectations_validator.py  # Run validations
 - Track geographic growth
 - Optimize area-specific strategies
 
-## 🚀 Complete Workflow Example
+## Complete Workflow Example
 
 ### Step 1: Initial Setup
 ```bash
@@ -347,7 +347,7 @@ $ dbt docs serve
 # - Source documentation
 ```
 
-## 📊 Sample Business Queries
+## Sample Business Queries
 
 ### Find Peak Hours by Day
 ```sql
@@ -384,7 +384,7 @@ WHERE year = 2024
 ORDER BY quarter DESC;
 ```
 
-## 🛠️ Tools & Versions
+## Tools & Versions
 
 | Tool | Version | Status |
 |------|---------|--------|
@@ -396,7 +396,7 @@ ORDER BY quarter DESC;
 | Google BigQuery | - | ✓ Connected |
 | Conda (dagster) | Environment | ✓ Active |
 
-## 📁 Project Files
+## Project Files
 
 **Core Files**:
 - ✓ dbt_project.yml - dbt configuration
@@ -453,7 +453,7 @@ New Features Added:
 ✓ Enhanced documentation
 ```
 
-## 🎯 Next Steps
+## Next Steps
 
 1. **Connect Production Data**
    - Update Meltano extractors for live feeds
