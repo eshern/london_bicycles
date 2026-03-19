@@ -25,13 +25,13 @@ $ dbt debug
 **Models Built**: 5/5 (2 views + 3 tables)
 
 **Staging Models (Views)**:
-- `london_bicycles_staging.stg_stations` (0 rows processed, 2 seconds)
-- `london_bicycles_staging.stg_trips` (0 rows processed, 2 seconds)
+- `london_bicycles_staging.stg_stations`
+- `london_bicycles_staging.stg_trips`
 
 **Mart Models (Tables)**:
-- `london_bicycles_marts.dim_stations` (15 rows, 592 bytes)
-- `london_bicycles_marts.fct_trips` (20 rows, 2.4 KB)
-- `london_bicycles_marts.trips_by_hour` (7 rows, 1.2 KB)
+- `london_bicycles_marts.dim_stations`
+- `london_bicycles_marts.fct_trips`
+- `london_bicycles_marts.trips_by_hour`
 
 **Output**: "Completed successfully"
 
