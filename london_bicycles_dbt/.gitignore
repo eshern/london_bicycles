@@ -54,6 +54,8 @@ dbt_packages/
 logs/
 **/*dbt_manifest.json
 
+
+
 # Meltano
 .meltano/
 meltano.state.ym
@@ -68,6 +70,7 @@ data_docs/
 .dagster/
 *.db
 *.sqlite
+tmp*
 
 # Credentials
 # *.json
@@ -88,6 +91,4 @@ Thumbs.db
 *.log
 logs/
 
-target/
-dbt_packages/
-logs/
+
