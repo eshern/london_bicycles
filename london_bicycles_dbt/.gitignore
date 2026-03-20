@@ -71,6 +71,7 @@ data_docs/
 *.db
 *.sqlite
 tmp*
+tmp*/
 
 # Credentials
 # *.json
